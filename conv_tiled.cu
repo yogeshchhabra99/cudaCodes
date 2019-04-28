@@ -59,7 +59,7 @@ void vecConv(float* A,float* B,float* C, int n){
 	dim3 dimGrid(ceil(n/(float)TILEWIDTH),1,1);
 	
 	//call kernal function that the calculates sum and stores it in C
-	vecAddKernel<<< dimGrid,dimBlock >>>(d_A,d_B,d_C,n);		
+	vecConvKernel<<< dimGrid,dimBlock >>>(d_A,d_B,d_C,n);		
 	//the y and z dimensions are set to 1 by default
 
 
@@ -90,6 +90,9 @@ int main(){
 	for(i=0;i<n;i++){
 		printf("%f ",C[i]);	
 	}
+	free(A);
+	free(B);
+	free(C);
 	return 0;
 }
 

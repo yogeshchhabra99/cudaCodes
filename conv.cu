@@ -32,7 +32,7 @@ void vecConv(float* A,float* B,float* C, int n){
 	cudaMemcpy(d_B, B, size, cudaMemcpyHostToDevice);
 
 	//call kernal function that the calculates sum and stores it in C
-	vecAddKernel<<< ceil(n/256.0),256 >>>(d_A,d_B,d_C,n);		
+	vecConvKernel<<< ceil(n/256.0),256 >>>(d_A,d_B,d_C,n);		
 	//the y and z dimensions are set to 1 by default
 
 
@@ -63,6 +63,9 @@ int main(){
 	for(i=0;i<n;i++){
 		printf("%f ",C[i]);	
 	}
+	free(A);
+	free(B);
+	free(C);
 	return 0;
 }
 

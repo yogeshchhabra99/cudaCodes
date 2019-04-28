@@ -37,7 +37,6 @@ void vecFFT(float* A,float* C, int n){
 	
 	//free device memories
 	cudaFree(d_A);
-	cudaFree(d_B);
 	cudaFree(d_C);
 }
 
@@ -57,6 +56,9 @@ int main(){
 	for(i=0;i<n;i++){
 		printf("%f ",C[i]);	
 	}
+	free(A);
+	free(B);
+	free(C);
 	return 0;
 }
 

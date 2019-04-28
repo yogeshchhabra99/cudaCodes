@@ -58,6 +58,9 @@ int main(){
 	for(i=0;i<n;i++){
 		printf("%f ",C[i]);	
 	}
+	free(A);
+	free(B);
+	free(C);
 	return 0;
 }
 
