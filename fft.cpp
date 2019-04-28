@@ -33,6 +33,22 @@ void fft2(CArray& x)
         x[k+N/2] = even[k] - t;
     }
 }
+
+void fft3(CArray& x){
+	const size_t N = x.size();
+	int n=2;
+	while(n<=N){
+		int i;
+		for(i=0;i<N/n;i++){
+			size_t j;
+			for(j=0;j<n/2;j++){
+				Complex t= std::polar(1.0,-2*PI*k/n) * x[i*n + 2*j +1]
+				x[i*n +j ] = x[i*n + 2*j];
+				x[i*n +j + n/2] = x[i*n + 2*j];
+			}	
+		}	
+	}
+}
  
 // Cooley-Tukey FFT (in-place, breadth-first, decimation-in-frequency)
 // Better optimized but less intuitive
